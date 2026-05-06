@@ -1,0 +1,338 @@
+/* ═══════════════════════════════════════════════════
+   Solutions — Particle Morph Scroll Experience
+   ═══════════════════════════════════════════════════ */
+
+.solutions {
+  background: var(--bg-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── Intro (scrolls away) ──────────────────────────── */
+.sol-intro {
+  padding: var(--space-32) 0 var(--space-24);
+  position: relative;
+  z-index: 2;
+}
+
+.sol-intro__content {
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sol-intro .tag {
+  border-color: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.7);
+}
+
+.sol-intro .tag__dot {
+  background: var(--accent-light);
+}
+
+.sol-intro__title {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 0.92;
+  color: #fff;
+  letter-spacing: -0.04em;
+}
+
+.sol-intro__accent {
+  background: linear-gradient(135deg, var(--accent-light), #4FD97E);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sol-intro__sub {
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.65;
+  max-width: 48ch;
+}
+
+/* ─── Pinned Viewport ──────────────────────────────── */
+.sol-pin-wrap {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 48px 1fr;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  box-sizing: border-box;
+}
+
+/* ─── LEFT: 3D Particle Canvas ─────────────────────── */
+.sol-canvas {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  max-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sol-canvas__glow {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(26, 107, 58, 0.06) 0%, transparent 65%);
+  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(40px);
+  z-index: 0;
+}
+
+.sol-canvas__label {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  z-index: 3;
+  transition: color 0.5s ease;
+}
+
+.sol-canvas__label-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  animation: pulse-dot 2s ease infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+
+/* ─── CENTER: Progress ─────────────────────────────── */
+.sol-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 200px;
+  position: relative;
+  z-index: 4;
+}
+
+.sol-progress__track {
+  width: 2px;
+  height: 100%;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.sol-progress__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(to bottom, var(--accent-light), #4FD97E);
+  border-radius: 2px;
+  transition: height 0.3s ease;
+}
+
+.sol-progress__steps {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sol-progress__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.15);
+  background: var(--bg-dark);
+  transition: all 0.4s var(--ease-spring);
+  z-index: 1;
+}
+
+.sol-progress__dot--active {
+  border-color: var(--accent-light);
+  background: var(--accent-light);
+  box-shadow: 0 0 12px rgba(42, 139, 78, 0.5);
+  transform: scale(1.3);
+}
+
+/* ─── RIGHT: Info Cards ────────────────────────────── */
+.sol-info {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 3rem;
+  height: 70vh;
+  max-height: 600px;
+}
+
+.sol-info__card {
+  position: absolute;
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+  pointer-events: none;
+}
+
+.sol-info__card--active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.sol-info__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sol-info__divider {
+  width: 24px;
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+}
+
+.sol-info__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+}
+
+.sol-info__desc {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+  max-width: 40ch;
+}
+
+.sol-info__features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  padding-top: 1rem;
+}
+
+.sol-info__feature {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.8);
+  font-weight: 500;
+}
+
+.sol-info__feature-bar {
+  width: 20px;
+  height: 2px;
+  background: var(--accent-light);
+  flex-shrink: 0;
+  border-radius: 1px;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: opacity 0.4s ease 0.2s, transform 0.5s var(--ease-spring) 0.2s;
+}
+
+.sol-info__card--active .sol-info__feature-bar {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* Stagger feature bar animations */
+.sol-info__card--active .sol-info__feature:nth-child(1) .sol-info__feature-bar { transition-delay: 0.3s; }
+.sol-info__card--active .sol-info__feature:nth-child(2) .sol-info__feature-bar { transition-delay: 0.4s; }
+.sol-info__card--active .sol-info__feature:nth-child(3) .sol-info__feature-bar { transition-delay: 0.5s; }
+
+/* ─── Responsive ────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .sol-pin-wrap {
+    grid-template-columns: 1fr;
+    grid-template-rows: 55vh auto auto;
+  }
+
+  .sol-canvas {
+    height: 55vh;
+  }
+
+  .sol-progress {
+    height: 40px;
+    flex-direction: row;
+    width: 160px;
+    margin: 0 auto;
+  }
+
+  .sol-progress__track {
+    width: 100%;
+    height: 2px;
+  }
+
+  .sol-progress__fill {
+    width: 0%;
+    height: 100%;
+  }
+
+  .sol-progress__steps {
+    flex-direction: row;
+  }
+
+  .sol-info {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    height: auto;
+    min-height: 40vh;
+    justify-content: center;
+  }
+
+  .sol-info__card {
+    position: relative;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .sol-intro__title {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .sol-info {
+    padding: 2rem 1.5rem;
+  }
+
+  .sol-info__title {
+    font-size: 2rem;
+  }
+}

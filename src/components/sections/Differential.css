@@ -1,0 +1,251 @@
+/* ═══════════════════════════════════════════════════
+   Differential — Magnetic 3D Twin Cards
+   ═══════════════════════════════════════════════════ */
+
+.diff {
+  background: var(--bg);
+}
+
+/* ─── Header ──────────────────────────────────────── */
+.diff__header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.diff__title {
+  font-size: clamp(2.2rem, 4.5vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.diff__accent {
+  color: var(--accent);
+}
+
+/* ─── Twin Cards Grid ─────────────────────────────── */
+.diff__twins {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ─── Individual Card ─────────────────────────────── */
+.diff-card {
+  position: relative;
+  border-radius: var(--r-xl);
+  background: var(--bg-card);
+  cursor: default;
+  transition: opacity 0.5s ease, filter 0.5s ease, transform 0.4s cubic-bezier(0.03, 0.98, 0.52, 0.99);
+  will-change: transform;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+.diff-card--dim {
+  opacity: 0.55;
+  filter: saturate(0.6);
+}
+
+/* ─── Glow Overlay (follows mouse) ────────────────── */
+.diff-card__glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  transition: background 0.15s ease;
+}
+
+/* ─── Border Highlight (appears on hover) ─────────── */
+.diff-card__border {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1.5px solid transparent;
+  pointer-events: none;
+  z-index: 2;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.diff-card--hover .diff-card__border {
+  border-color: var(--border-color);
+  box-shadow:
+    0 0 0 1px var(--border-color),
+    0 8px 32px rgba(0,0,0,0.08),
+    0 24px 64px rgba(0,0,0,0.04);
+}
+
+/* ─── Card Content ────────────────────────────────── */
+.diff-card__content {
+  position: relative;
+  z-index: 3;
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Eyebrow */
+.diff-card__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.diff-card__num {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.12em;
+}
+
+.diff-card__eye-line {
+  width: 20px;
+  height: 1px;
+  background: var(--border-strong);
+}
+
+.diff-card__eye-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Icon */
+.diff-card__icon {
+  width: 52px;
+  height: 52px;
+  transition: transform 0.5s var(--ease-spring);
+}
+
+.diff-card--hover .diff-card__icon {
+  transform: scale(1.1) translateY(-2px);
+}
+
+.diff-card__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Title */
+.diff-card__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink);
+}
+
+/* Subtitle */
+.diff-card__sub {
+  font-size: 1rem;
+  color: var(--ink-muted);
+  line-height: 1.65;
+  max-width: 36ch;
+}
+
+/* Feature List */
+.diff-card__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+}
+
+.diff-card__item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--ink-2);
+  font-weight: 500;
+  opacity: 0.8;
+  transform: translateX(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.diff-card--hover .diff-card__item {
+  opacity: 1;
+}
+
+/* Stagger the items on hover */
+.diff-card--hover .diff-card__item:nth-child(1) { transition-delay: 0.02s; transform: translateX(4px); }
+.diff-card--hover .diff-card__item:nth-child(2) { transition-delay: 0.06s; transform: translateX(4px); }
+.diff-card--hover .diff-card__item:nth-child(3) { transition-delay: 0.10s; transform: translateX(4px); }
+.diff-card--hover .diff-card__item:nth-child(4) { transition-delay: 0.14s; transform: translateX(4px); }
+
+.diff-card__check {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s var(--ease-spring);
+}
+
+.diff-card--hover .diff-card__check {
+  transform: scale(1.08);
+}
+
+.diff-card__check svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* CTA */
+.diff-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  margin-top: 0.5rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s, gap 0.3s ease;
+}
+
+.diff-card--hover .diff-card__cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.diff-card__cta:hover {
+  gap: 0.8rem;
+}
+
+.diff-card__cta svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.diff-card__cta:hover svg {
+  transform: translateX(3px);
+}
+
+/* ─── Responsive ──────────────────────────────────── */
+@media (max-width: 768px) {
+  .diff__twins {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .diff-card__content {
+    padding: 2rem 1.5rem;
+  }
+}

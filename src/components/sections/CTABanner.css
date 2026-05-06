@@ -1,0 +1,125 @@
+.cta-banner {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+.cta-banner__bg {
+  position: absolute;
+  inset: 0;
+  background: url('/images/cta-bg.jpg') center / cover no-repeat;
+  transform: scale(1.05);
+  transition: transform 12s ease;
+}
+
+.cta-banner:hover .cta-banner__bg {
+  transform: scale(1.0);
+}
+
+.cta-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(10, 10, 10, 0.92) 0%,
+    rgba(10, 10, 10, 0.82) 50%,
+    rgba(10, 10, 10, 0.65) 100%
+  );
+}
+
+.cta-banner__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  padding-block: clamp(5rem, 10vh, 10rem);
+}
+
+.cta-banner__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 600px;
+}
+
+.cta-banner__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.cta-banner__highlight {
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cta-banner__desc {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.6;
+  max-width: 44ch;
+}
+
+.cta-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+/* Stats column */
+.cta-banner__stats {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  flex-shrink: 0;
+}
+
+.cta-banner__stat {
+  border-left: 2px solid var(--accent);
+  padding-left: 1.5rem;
+}
+
+.cta-banner__stat-num {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #fff;
+  line-height: 1;
+}
+
+.cta-banner__stat-lbl {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+  margin-top: 0.25rem;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 900px) {
+  .cta-banner__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cta-banner__stats {
+    flex-direction: row;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .cta-banner__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .cta-banner__actions .btn { width: 100%; }
+  .cta-banner__stats { flex-direction: column; gap: 1.5rem; }
+}
