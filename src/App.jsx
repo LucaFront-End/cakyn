@@ -3,6 +3,7 @@ import SmoothScroll from './components/layout/SmoothScroll'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import ScrollProgress from './components/ui/ScrollProgress'
+import CatalogPopup from './components/CatalogPopup'
 import HomePage from './pages/HomePage'
 import ProductsPage from './pages/ProductsPage'
 import ServicesPage from './pages/ServicesPage'
@@ -29,6 +30,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      <CatalogPopup />
     </>
   )
 }

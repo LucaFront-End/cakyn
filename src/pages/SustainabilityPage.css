@@ -1,147 +1,493 @@
-.sust-hero {
+/* ═══════════════════════════════════════════════════
+   Sustainability Page — Premium Overhaul
+   ═══════════════════════════════════════════════════ */
+
+/* ─── HERO ─────────────────────────────────────── */
+.su-hero {
   position: relative;
-  padding-top: calc(var(--navbar-height) + 4rem);
-  padding-bottom: 3rem;
-  text-align: center;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--bg);
   overflow: hidden;
+  padding-top: var(--navbar-height);
+  border-bottom: 1px solid var(--border);
 }
 
-.sust-hero__gradient {
+.su-hero__grid {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 200, 83, 0.05) 0%, transparent 60%);
-  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.5;
 }
 
-.sust-hero h1 {
-  margin: 1rem 0;
-}
-
-.sust-hero__phrase {
-  font-size: clamp(1.3rem, 2.5vw, 2rem) !important;
-  font-family: var(--font-heading);
-  font-weight: 700;
-}
-
-/* --- Circular Economy Cycle --- */
-.sust-cycle {
-  padding-top: 0;
-}
-
-.sust-cycle__visual {
-  position: relative;
-  max-width: 600px;
-  margin: 0 auto;
-  aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sust-cycle__center {
+.su-hero__glow {
   position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  opacity: 0.6;
+  pointer-events: none;
+  filter: blur(60px);
+}
+
+.su-hero__content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  z-index: 2;
+  gap: 2rem;
 }
 
-.sust-cycle__center-icon {
-  font-size: 3rem;
+.su-hero__title {
+  font-size: clamp(3.5rem, 8vw, 7.5rem);
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  max-width: 1000px;
 }
 
-.sust-cycle__center-text {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  text-align: center;
+.su-hero__sub {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--ink-muted);
+  max-width: 680px;
 }
 
-.sust-cycle__ring {
-  position: absolute;
+/* ─── SCROLL-DRIVEN CYCLE ──────────────────────── */
+.su-cycle {
+  padding: var(--space-32) 0;
+  background: var(--bg-alt);
+  min-height: 120vh;
+  display: flex;
+  align-items: center;
+}
+
+.su-cycle__header {
+  max-width: 660px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 5rem;
+}
+
+.su-cycle__heading {
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.su-cycle__intro {
+  font-size: 1.15rem;
+  color: var(--ink-muted);
+  line-height: 1.7;
+}
+
+.su-cycle__visual {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+
+.su-cycle__svg {
   width: 100%;
   height: 100%;
 }
 
-.sust-cycle__stages {
-  position: absolute;
-  inset: 0;
+.su-cycle__path-draw {
+  transition: none;
 }
 
-.cycle-stage {
+/* Center */
+.su-cycle__center {
   position: absolute;
-  width: 160px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  z-index: 2;
+  color: var(--accent);
+}
+
+.su-cycle__center-pulse {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  opacity: 0.2;
+}
+
+.su-cycle__center-text {
+  font-size: 0.65rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.2em;
   text-align: center;
+  line-height: 1.5;
+}
+
+/* Nodes */
+.su-cycle__node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  z-index: 3;
+}
+
+.su-cycle__node-dot {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s var(--ease-spring);
+  box-shadow: var(--shadow-sm);
+  color: var(--ink-muted);
+}
+
+.su-cycle__node--active .su-cycle__node-dot {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--bg);
+  box-shadow: 0 0 30px var(--accent-glow), var(--shadow-md);
+  transform: scale(1.1);
+}
+
+.su-cycle__node-label {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.4s ease;
+  pointer-events: none;
 }
 
-.cycle-stage--0 { top: -5%; left: 50%; transform: translateX(-50%); }
-.cycle-stage--1 { right: -5%; top: 50%; transform: translateY(-50%); }
-.cycle-stage--2 { bottom: -5%; left: 50%; transform: translateX(-50%); }
-.cycle-stage--3 { left: -5%; top: 50%; transform: translateY(-50%); }
-
-.cycle-stage__icon {
-  font-size: 2rem;
-  margin-bottom: 2px;
+.su-cycle__node--active .su-cycle__node-label {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.cycle-stage h4 {
-  font-size: 0.85rem;
+.su-cycle__node-step {
+  font-size: 0.7rem;
+  color: var(--accent);
+  letter-spacing: 0.15em;
 }
 
-.cycle-stage p {
-  font-size: 0.75rem;
-  line-height: 1.4;
+.su-cycle__node-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
 }
 
-/* --- Metrics --- */
-.sust-metrics__grid {
+/* ─── PROCESS CARDS ────────────────────────────── */
+.su-proc {
+  padding: var(--space-32) 0;
+  background: var(--bg);
+}
+
+.su-proc__header {
+  margin-bottom: 4rem;
+}
+
+.su-proc__heading {
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.su-proc__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
-.sust-metric {
-  padding: 3rem 2rem;
-  text-align: center;
+.su-proc__step {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 2.5rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
+  gap: 1.5rem;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-.sust-metric__value {
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 800;
-  color: var(--text-primary);
+.su-proc__step:hover {
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-md);
+}
+
+.su-proc__step-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.5rem;
+}
+
+.su-proc__step-num {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--border-strong);
   line-height: 1;
 }
 
-.sust-metric__suffix {
+.su-proc__step:hover .su-proc__step-num {
   color: var(--accent);
-  font-size: 0.6em;
 }
 
-.sust-metric__label {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
+.su-proc__step-icon {
+  color: var(--ink-muted);
+}
+
+.su-proc__step-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.su-proc__step-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.su-proc__step-desc {
+  font-size: 1rem;
+  color: var(--ink-muted);
+  line-height: 1.7;
+}
+
+/* ─── METRICS DASHBOARD (Dark) ─────────────────── */
+.su-met {
+  padding: var(--space-32) 0;
+  background: var(--bg-dark);
+  color: var(--ink-on-dark);
+}
+
+.su-met__header {
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 5rem;
+}
+
+.su-met__heading {
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--ink-on-dark);
+}
+
+.su-met__intro {
+  font-size: 1.15rem;
+  color: rgba(245, 242, 238, 0.6);
+  line-height: 1.7;
+}
+
+.su-met__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.su-met__card {
+  background: var(--bg-dark-alt);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--r-xl);
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.su-met__val-row {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.su-met__val {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--ink-on-dark);
+  line-height: 1;
+}
+
+.su-met__suffix {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.su-met__label {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink-on-dark);
+  margin-top: 0.5rem;
+}
+
+.su-met__detail {
+  font-size: 0.75rem;
+  color: rgba(245, 242, 238, 0.4);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Progress ring */
+.su-met__ring {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  transform: rotate(-90deg);
+  opacity: 0.2;
+}
+
+.su-met__ring-bg {
+  fill: none;
+  stroke: rgba(255,255,255,0.1);
+  stroke-width: 2;
+}
+
+.su-met__ring-fill {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 4;
+  stroke-dasharray: 276;
+  stroke-dashoffset: 276;
+  stroke-linecap: round;
+  transition: none;
+}
+
+/* ─── PILLARS & COMMITMENT ─────────────────────── */
+.su-pill {
+  padding: var(--space-32) 0;
+  background: var(--bg);
+}
+
+.su-pill__split {
+  display: grid;
+  grid-template-columns: 0.4fr 0.6fr;
+  gap: 4rem;
+}
+
+.su-pill__heading {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: 2rem;
+}
+
+.su-commit {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 2rem;
+  background: var(--accent-bg);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--r-xl);
+}
+
+.su-commit__icon {
+  color: var(--accent);
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+}
+
+.su-commit__text {
+  font-size: 1.05rem;
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+
+.su-pill__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.su-pill__card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.su-pill__icon {
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.su-pill__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.su-pill__desc {
+  font-size: 1rem;
+  color: var(--ink-muted);
+  line-height: 1.7;
+}
+
+/* ─── Responsive ───────────────────────────────── */
+@media (max-width: 1024px) {
+  .su-proc__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .su-met__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .su-pill__split {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 768px) {
-  .sust-cycle__visual {
+  .su-cycle__visual {
     max-width: 320px;
   }
+}
 
-  .cycle-stage {
-    width: 120px;
-  }
-
-  .sust-metrics__grid {
+@media (max-width: 480px) {
+  .su-proc__grid,
+  .su-met__grid,
+  .su-pill__grid {
     grid-template-columns: 1fr;
   }
 }

@@ -1,16 +1,29 @@
 import { useEffect, useRef, useState } from 'react'
 
-export function useCountUp(end, duration = 2000, startOnVisible = true) {
+/**
+ * Animated counter hook.
+ * @param {number} end - Target number
+ * @param {number} duration - Animation duration in ms
+ * @param {boolean} trigger - When true, starts the animation (use with external ScrollTrigger).
+ *                            Pass `null` or `undefined` to use built-in IntersectionObserver.
+ */
+export function useCountUp(end, duration = 2000, trigger) {
   const [count, setCount] = useState(0)
   const ref = useRef(null)
   const hasAnimated = useRef(false)
 
+  // External trigger mode
   useEffect(() => {
-    if (!startOnVisible) {
+    if (trigger === null || trigger === undefined) return // IO mode
+    if (trigger && !hasAnimated.current) {
+      hasAnimated.current = true
       animateCount()
-      return
     }
+  }, [trigger, end])
 
+  // IntersectionObserver mode (when trigger is not provided)
+  useEffect(() => {
+    if (trigger !== null && trigger !== undefined) return // External mode
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated.current) {
