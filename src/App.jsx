@@ -4,6 +4,7 @@ import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import ScrollProgress from './components/ui/ScrollProgress'
 import CatalogPopup from './components/CatalogPopup'
+import ScrollToTop from './components/ScrollToTop'
 import HomePage from './pages/HomePage'
 import ProductsPage from './pages/ProductsPage'
 import ServicesPage from './pages/ServicesPage'
@@ -15,6 +16,7 @@ import ContactPage from './pages/ContactPage'
 function App() {
   return (
     <>
+      <ScrollToTop />
       <SmoothScroll />
       <ScrollProgress />
       <Navbar />
