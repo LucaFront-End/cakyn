@@ -3,6 +3,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Package, Car, HardHat, Cpu, Scissors, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { industriesContent, comparatorContent } from '../data/content'
+import SEOHead from '../components/SEOHead'
 import CTABanner from '../components/sections/CTABanner'
 import './IndustriesPage.css'
 
@@ -52,6 +53,11 @@ export default function IndustriesPage() {
 
   return (
     <div className="ind-page" ref={pageRef}>
+
+      <SEOHead
+        title="Polímeros Industriales para Empresas en México | Cakin"
+        description="Materiales plásticos y polímeros industriales para sectores de manufactura, construcción, empaque y automotriz en México. Calidad y suministro confiable."
+      />
 
       {/* ═══ HERO (Light) ═══ */}
       <section className="ind-hero">

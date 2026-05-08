@@ -6,6 +6,7 @@ import {
   ArrowRight, Check, Zap, Truck, FileText 
 } from 'lucide-react'
 import { servicesContent } from '../data/content'
+import SEOHead from '../components/SEOHead'
 import CTABanner from '../components/sections/CTABanner'
 import './ServicesPage.css'
 
@@ -53,6 +54,11 @@ export default function ServicesPage() {
 
   return (
     <div className="sv-page" ref={pageRef}>
+
+      <SEOHead
+        title="Servicios de Reciclaje y Suministro de Polímeros | Cakin"
+        description="Servicios industriales de reciclaje, procesamiento y suministro de resinas plásticas en México. Soluciones eficientes para la industria manufacturera."
+      />
 
       {/* ═══ HERO (Light) ═══ */}
       <section className="sv-hero">

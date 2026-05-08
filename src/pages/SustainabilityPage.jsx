@@ -7,6 +7,7 @@ import {
 } from 'lucide-react'
 import { useCountUp } from '../hooks/useCountUp'
 import { sustainabilityContent } from '../data/content'
+import SEOHead from '../components/SEOHead'
 import CTABanner from '../components/sections/CTABanner'
 import './SustainabilityPage.css'
 
@@ -130,6 +131,11 @@ export default function SustainabilityPage() {
 
   return (
     <div className="su-page" ref={pageRef}>
+
+      <SEOHead
+        title="Sustentabilidad y Reciclaje Industrial | Cakin México"
+        description="En Cakin impulsamos la economía circular mediante reciclaje industrial y reutilización de materiales plásticos para una industria más sustentable en México."
+      />
 
       {/* ═══ HERO (Light/Editorial) ═══ */}
       <section className="su-hero">

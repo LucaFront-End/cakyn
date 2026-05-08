@@ -3,6 +3,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Zap, Clock, Phone, Mail, MapPin, Check, Send } from 'lucide-react'
 import { contactContent, siteConfig } from '../data/content'
+import SEOHead from '../components/SEOHead'
 import './ContactPage.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -56,6 +57,11 @@ export default function ContactPage() {
 
   return (
     <div className="ct-page" ref={pageRef}>
+
+      <SEOHead
+        title="Contacto | Distribuidor de Polímeros y Reciclaje Industrial | Cakin"
+        description="Solicita información y cotizaciones de polímeros y materiales plásticos industriales. Distribución y reciclaje industrial con cobertura en México."
+      />
 
       {/* ═══ HERO (Light) ═══ */}
       <section className="ct-hero">

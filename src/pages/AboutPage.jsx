@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Star, Handshake, Recycle, Lightbulb } from 'lucide-react'
 import { aboutContent } from '../data/content'
 import { useCountUp } from '../hooks/useCountUp'
+import SEOHead from '../components/SEOHead'
 import CTABanner from '../components/sections/CTABanner'
 import './AboutPage.css'
 
@@ -165,6 +166,11 @@ export default function AboutPage() {
 
   return (
     <div className="ab-page" ref={pageRef}>
+
+      <SEOHead
+        title="Sobre Desperdicios Industriales Cakin | Expertos en Polímeros"
+        description="Empresa mexicana especializada en reciclaje industrial y distribución de polímeros en México. Comprometidos con calidad, sustentabilidad y eficiencia."
+      />
 
       {/* ═══════════════════════════════════════════
           SECTION 1: Cinematic Hero

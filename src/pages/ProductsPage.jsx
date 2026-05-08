@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { productsContent } from '../data/content'
+import SEOHead from '../components/SEOHead'
 import CTABanner from '../components/sections/CTABanner'
 import './ProductsPage.css'
 
@@ -92,6 +93,11 @@ export default function ProductsPage() {
 
   return (
     <div className="pp-page">
+
+      <SEOHead
+        title="Polímeros y Resinas Plásticas Industriales | Cakin México"
+        description="Distribuidor de polímeros en México especializado en polietileno, polipropileno y materiales plásticos reciclados y vírgenes para procesos industriales."
+      />
 
       {/* ── Hero ── */}
       <section className="pp-hero">
