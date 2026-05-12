@@ -30,16 +30,11 @@ export default function Navbar() {
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''} ${menuOpen ? 'navbar--open' : ''}`}>
       <div className="navbar__inner container--wide">
         <Link to="/" className="navbar__brand">
-          <div className="navbar__logo-mark">
-            <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
-              <path d="M12 2L20 6V12L12 16L4 12V6L12 2Z" fill="currentColor" />
-              <path d="M12 10L16 8L12 6L8 8L12 10Z" fill="white" opacity="0.5" />
-            </svg>
-          </div>
-          <div className="navbar__brand-text">
-            <span className="navbar__brand-name">{siteConfig.brandShort}</span>
-            <span className="navbar__brand-sub">Industrial</span>
-          </div>
+          <img
+            src="/images/logo-color.png"
+            alt={siteConfig.brandShort}
+            className="navbar__logo-img"
+          />
         </Link>
 
         <div className={`navbar__menu ${menuOpen ? 'navbar__menu--open' : ''}`}>

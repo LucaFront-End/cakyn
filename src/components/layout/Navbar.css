@@ -33,43 +33,15 @@
   z-index: 10;
 }
 
-.navbar__logo-mark {
-  width: 32px;
-  height: 32px;
-  background: var(--ink);
-  border-radius: var(--r-sm);
-  display: grid;
-  place-items: center;
-  color: var(--bg);
-  transition: background 0.2s;
-  flex-shrink: 0;
+.navbar__logo-img {
+  height: 36px;
+  width: auto;
+  display: block;
+  transition: opacity 0.3s ease;
 }
 
-.navbar__brand:hover .navbar__logo-mark {
-  background: var(--accent);
-}
-
-.navbar__brand-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.navbar__brand-name {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  line-height: 1;
-}
-
-.navbar__brand-sub {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  color: var(--ink-faint);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin-top: 1px;
+.navbar__brand:hover .navbar__logo-img {
+  opacity: 0.8;
 }
 
 /* Menu */

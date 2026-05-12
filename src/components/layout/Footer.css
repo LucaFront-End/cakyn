@@ -34,16 +34,12 @@
 .footer__logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: var(--accent);
 }
 
-.footer__logo span {
-  font-family: var(--font-heading);
-  font-size: 1.3rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: var(--text-primary);
+.footer__logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
 }
 
 .footer__tagline {

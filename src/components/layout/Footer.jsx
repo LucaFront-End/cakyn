@@ -10,11 +10,11 @@ export default function Footer() {
         <div className="footer__grid">
           <div className="footer__brand">
             <div className="footer__logo">
-              <svg viewBox="0 0 40 40" fill="none" width="40" height="40">
-                <path d="M20 4L36 12V28L20 36L4 28V12L20 4Z" stroke="currentColor" strokeWidth="1.5" fill="none" />
-                <circle cx="20" cy="20" r="4" fill="currentColor" />
-              </svg>
-              <span>{siteConfig.brandShort}</span>
+              <img
+                src="/images/logo-white.png"
+                alt={siteConfig.brandShort}
+                className="footer__logo-img"
+              />
             </div>
             <p className="footer__tagline">{siteConfig.tagline}</p>
             <p className="footer__legal">{siteConfig.companyName}</p>
