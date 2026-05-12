@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="footer__brand">
             <div className="footer__logo">
               <img
-                src="/images/logo-white.png"
+                src="/images/logo-color.png"
                 alt={siteConfig.brandShort}
                 className="footer__logo-img"
               />
